@@ -65,14 +65,14 @@
                         <%= f.label :date_of_join %>
                             :</div>
                     <div>
-                        <%= f.date_field :date_of_join, class: "form-control" %>
+                        <%= f.date_field :date_of_join, min: "2010-01-01", max: Date.today + 30, class: "form-control" %>
                             
                     </div>
                     <div>
                         <%= f.label :date_of_birth %>
                             :</div>
                     <div>
-                        <%= f.date_field :date_of_birth, class: "form-control" %>
+                        <%= f.date_field :date_of_birth, min: 100.years.ago, max: 18.years.ago, class: "form-control" %>
                             
                     </div>
                     <div>
