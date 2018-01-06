@@ -9,9 +9,9 @@
         <%= form_for(@employee, url: employeeportal_path(:id => @employee.id), method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @employee %>
             <% if f.object.picture? %>
-                <%= image_tag @employee.picture.thumb.url, class: "image" %>
+                <%= image_tag @employee.picture.thumb.url %>
             <% else %>
-                <span class = "image1">
+                <span>
                     <%= gravatar_for (@employee) %>
                 </span>
             <% end %>

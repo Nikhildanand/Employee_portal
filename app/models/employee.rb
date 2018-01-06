@@ -20,9 +20,11 @@ class Employee < ApplicationRecord
 
     mount_uploader :picture, PictureUploader
 
-    validates :date_of_join, presence: true
+    # validates :validate_date_of_join, presence: true
+    validates :date_of_join, :date => { :after   => Proc.new {Date.parse("2009-12-31")}, :before => Proc.new{(Date.today + 31)} }
+    validates :date_of_birth, :date => { :after   => Proc.new {100.years.ago}, :before => Proc.new{(18.years.ago)} }
 
-    validates :address, length: { minimum: 25, maximum: 255 }
+    validates :username, presence: true
     
     has_secure_password
     VALID_PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d])[\S]{8,15}\z/

@@ -14,6 +14,9 @@ gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
+gem 'validates_timeliness', '~> 4.0'
+gem 'date_validator'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

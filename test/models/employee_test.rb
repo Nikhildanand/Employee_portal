@@ -117,23 +117,38 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_not @employee.valid?
   end
 
-  test "date of join should be valid" do
-    @employee.date_of_join = "2016-03-17"
-    assert @employee.valid?
-  end
-
-  test "address should not be invalid" do
-    employee_addresses = ["a"*24, "a"*256]
-    employee_addresses.each do |invalid_emp_address|
-      @employee.address = invalid_emp_address
-      assert_not @employee.valid?, "#{invalid_emp_address.inspect} should be valid"
+  test "date of join should not be invalid" do
+    invalid_dates_of_join = ["2009-12-31", (Date.today + 31), "2017-13-13", "2017-02-29", 10.years.ago ]
+    invalid_dates_of_join.each do |invalid_date_of_join|
+      @employee.date_of_join = invalid_date_of_join
+      assert_not @employee.valid?, "#{invalid_date_of_join.inspect} should be valid"
     end
   end
 
-  test "address should be valid" do
-    @employee.address = "Sajith Nivas, Karumalloor P.O, Thattampady, Aluva, Ernakulam"
-    assert @employee.valid?
+  test "date of join should be valid" do
+    valid_dates_of_join = [(Date.today + 30), "2010-01-01", Date.today, Date.yesterday, Date.tomorrow, 1.year.ago]
+    valid_dates_of_join.each do |valid_date_of_join|
+      @employee.date_of_join = valid_date_of_join
+      assert @employee.valid?, "#{valid_date_of_join.inspect} should be valid"
+    end
   end
+
+  test "date of birth should not be invalid" do
+    invalid_dates_of_birth = [17.year.ago, (Date.today + 31), 100.year.ago ]
+    invalid_dates_of_birth.each do |invalid_date_of_birth|
+      @employee.date_of_birth = invalid_date_of_birth
+      assert_not @employee.valid?, "#{invalid_date_of_birth.inspect} should be valid"
+    end
+  end
+
+  test "date of birth should be valid" do
+    valid_dates_of_birth = [18.year.ago, 99.year.ago, "1994-03-17"]
+    valid_dates_of_birth.each do |valid_date_of_birth|
+      @employee.date_of_birth = valid_date_of_birth
+      assert @employee.valid?, "#{valid_date_of_birth.inspect} should be valid"
+    end
+  end
+
 
   test "password should be present" do
     @employee.password = @employee.password_confirmation = " " * 8

@@ -11,7 +11,7 @@ employee:
   active: false
   username: nikhildanand@gmail.com
   personal_email: nikhildanand007@yahoomail.com
-  date_of_birth: 2018-01-03
+  date_of_birth: 1994-03-17
   admin: false
   password_digest: <%= Employee.digest('Ha66y@Air') %>
 
@@ -26,7 +26,7 @@ employee1:
   active: true
   username: nikhildanand2@gmail.com
   personal_email: nikhildanand008@yahoomail.com
-  date_of_birth: 2018-02-03
+  date_of_birth: 1994-03-17
   admin: false
   password_digest: <%= Employee.digest('Ha66y@Air') %>
 
@@ -41,7 +41,7 @@ admin:
   active: true
   username: admin
   personal_email: nikhildanand007@ymail.com
-  date_of_birth: 2018-01-03
+  date_of_birth: 1994-03-17
   admin: true
   password_digest: <%= Employee.digest('Ha66y@Air') %>
 
@@ -57,7 +57,7 @@ employee_<%= n %>:
   active: true
   username: <%= "employeew-#{n}@example.com" %>
   personal_email: <%= "employee-w#{n}@example.com" %>
-  date_of_birth: 2018-02-03
+  date_of_birth: 1994-03-17
   admin: false
   password_digest: <%= Employee.digest('Ha66y@Air') %>
 <% end %>
