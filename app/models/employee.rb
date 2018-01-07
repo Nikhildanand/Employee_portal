@@ -20,6 +20,10 @@ class Employee < ApplicationRecord
 
     mount_uploader :picture, PictureUploader
 
+    validates :personal_email, :allow_blank => true, length: { maximum: 255 },
+                format: { with: VALID_EMAIL_REGEX },
+                uniqueness: { case_sensitive: false}
+
     validates :date_of_join,
         :date => { :after   => Proc.new {Date.parse("2009-12-31")}, :before => Proc.new{(Date.today + 31)} }
     validates :date_of_birth, 
