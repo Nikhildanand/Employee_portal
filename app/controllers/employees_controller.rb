@@ -66,7 +66,7 @@ class EmployeesController < ApplicationController
   end
 
   def employeetable
-    @employee = Employee.paginate(page: params[:page], :per_page => 2)
+    @employee = Employee.reorder("Name").paginate(page: params[:page], :per_page => 10)
   end
 
   def projects

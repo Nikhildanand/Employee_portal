@@ -117,6 +117,11 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_not @employee.valid?
   end
 
+  test "date of join should not be empty" do
+    @employee.date_of_join = ""
+    assert_not @employee.valid?
+  end
+
   test "date of join should not be invalid" do
     invalid_dates_of_join = ["2009-12-31", (Date.today + 31), "2017-13-13", "2017-02-29", 10.years.ago ]
     invalid_dates_of_join.each do |invalid_date_of_join|
@@ -146,6 +151,22 @@ class EmployeeTest < ActiveSupport::TestCase
     valid_dates_of_birth.each do |valid_date_of_birth|
       @employee.date_of_birth = valid_date_of_birth
       assert @employee.valid?, "#{valid_date_of_birth.inspect} should be valid"
+    end
+  end
+
+  test "address should not be too short or too long" do
+    invalid_addresses = ["a"*24, "a"*256]
+    invalid_addresses.each do |invalid_address|
+      @employee.address = invalid_address
+      assert_not @employee.valid?, "#{invalid_address.inspect} should be valid"
+    end
+  end
+
+  test "address should be valid" do
+    valid_addresses = ["a"*25, "a"*255]
+    valid_addresses.each do |valid_address|
+      @employee.address = valid_address
+      assert @employee.valid?, "#{valid_address.inspect} should be valid"
     end
   end
 

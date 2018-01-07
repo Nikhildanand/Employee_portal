@@ -22,7 +22,7 @@
 
                                 <div>
                                     <%= f.label :gender %>
-                                        :</div>
+                                        <sup>*</sup>:</div>
                                 <div>
                                     <%= f.select :gender, options_for_select([["Male"],["Female"],["Other"]]) %>
 
@@ -36,7 +36,7 @@
                                 </div>
                                 <div>
                                     <%= f.label :phone %>
-                                        :</div>
+                                        <sup>*</sup>:</div>
                                 <div>
                                     <%= f.text_field :phone, class: "form-control" %>
 
