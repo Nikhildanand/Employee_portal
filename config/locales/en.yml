@@ -30,4 +30,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activemodel:
+    attributes:
+      employee:
+        password: "Password"
+    errors:
+      models:
+        employee:
+          attributes:
+            password: "should contain at least one uppercase, lowercase, numeric and special character and 8 charcaters long"
+

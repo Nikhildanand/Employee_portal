@@ -10,7 +10,9 @@ class Employee < ApplicationRecord
     validates :designation,  presence: true
 
     VALID_PHONE_REGEX = /\A\d{10}\z/
-    validates :phone, presence: true, format: {with: VALID_PHONE_REGEX}, uniqueness: true
+    validates :phone, presence: true, 
+                    format: {with: VALID_PHONE_REGEX, message: "should have 10 digits"},
+                    uniqueness: true
 
     before_save { email.downcase! }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.([a-z]){2,3}+){1,2}\z/i
@@ -34,10 +36,14 @@ class Employee < ApplicationRecord
 
     validates :username, presence: true
     
-    has_secure_password
     # validates :validate_date_of_join, presence: true
+    has_secure_password
     VALID_PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d])[\S]{8,15}\z/
-    validates :password, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
+    validates :password, 
+                format: { with: VALID_PASSWORD_REGEX, 
+                    message: 'should contain uppercase, lowercase, numeric   and special character' }, 
+                length: { minimum: 8, maximum: 15 },
+                allow_nil: true
 
     # Returns the hash digest of the given string.
     def Employee.digest(string)
