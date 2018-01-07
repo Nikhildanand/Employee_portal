@@ -41,7 +41,7 @@ class Employee < ApplicationRecord
     VALID_PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d])[\S]{8,15}\z/
     validates :password, 
                 format: { with: VALID_PASSWORD_REGEX, 
-                    message: 'should contain uppercase, lowercase, numeric   and special character' }, 
+                    message: 'should contain uppercase, lowercase, numeric and special character' }, 
                 length: { minimum: 8, maximum: 15 },
                 allow_nil: true
 
