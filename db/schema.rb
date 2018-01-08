@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105064616) do
+ActiveRecord::Schema.define(version: 20180108020614) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "gender"
     t.string "designation"
-    t.integer "phone", limit: 10
+    t.string "phone", limit: 10
     t.string "email"
     t.date "date_of_join"
     t.string "address"
