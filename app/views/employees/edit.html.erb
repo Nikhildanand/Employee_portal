@@ -1,111 +1,96 @@
 <% provide(:name, "employee") %>
 <% provide(:title, "Edit Details") %>
+
 <div class="container">
-    <div class="col-md-5">
-        <div>
-            <h3 class="text-center">Employee Update</h3>
-        </div>
-
-        <%= form_for(@employee, url: employeeportal_path(:id => @employee.id), method: :patch) do |f| %>
-            <%= render 'shared/error_messages', object: @employee %>
-            <% if f.object.picture? %>
-                <%= image_tag @employee.picture.thumb.url %>
-            <% else %>
-                <span>
-                    <%= gravatar_for (@employee) %>
-                </span>
-            <% end %>
-            <div>
-                <div>
-                    <div>
-                        <%= f.label :picture %>
-                        :
-                    </div>
-                    <div>
-                        <%= f.file_field :picture %>
-                    </div>
-
-                    <div>
-                        <%= f.label :id %>
-                            :
-                    
-                        <%= f.text_field :id, :value => ("RP_#{@employee.id}"), :disabled => true, class: "form-control" %>
-                    </div>
-
-                    <div>
-                        <%= f.label :name %>
-                            :
-                    
-                        <%= f.text_field :name, :disabled => true, class: "form-control" %>
-                    </div>
-
-                    <div>
-                        <%= f.label :gender %>
-                            :
-                    
-                        <%= f.text_field :gender, :disabled => true, class: "form-control" %>
-                    </div>                    
-                    
-                    <div>
-                        <%= f.label :designation %>
-                            :
-                    
-                        <%= f.text_field :designation, :disabled => true, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :phone %>
-                            <sup>*</sup>:
-                    
-                        <%= f.text_field :phone, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :email %>
-                            :
-                    
-                        <%= f.email_field :email, :disabled => true, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :personal_email %>
-                            <sup>*</sup>:
-                    
-                        <%= f.email_field :personal_email, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :date_of_join %>
-                            :
-                    
-                        <%= f.date_field :date_of_join, :disabled => true, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :date_of_birth %>
-                            :
-                    
-                        <%= f.date_field :date_of_birth, :disabled => true, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :address %>
-                            <sup>*</sup>:
-                    
-                        <%= f.text_area :address, class: "form-control" %>
-                    </div>
-                    <div>
-                        <%= f.label :active %>
-                            :
-                    
-                        <%= f.check_box :active, :disabled => true %>
-                    </div>
-                    <div>
-                        <%= f.label :username %>
-                            :
-                    
-                        <%= f.text_field :username, :disabled => true, class: "form-control" %>
-                    </div>
-                </div>
-                <br />
-                <div>
-                    <%= f.submit "Update", class: "btn btn-lg btn-success col-sm-12 col-xs-12" %>
-                </div>
-            </div>
-            <% end %>
+  <div class="col-md-5">
+      <%= link_to '<i class="fa fa-facebook-official font-awesome" aria-hidden="true"></i><b>etch data from facebook</b>'.html_safe,
+                                                   '/auth/facebook', class: 'btn btn-primary' %>
+    <div>
+      <h3 class="text-center">Employee Update</h3>
     </div>
+
+    <%= form_for(@employee, url: employeeportal_path(:id => @employee.id), method: :patch) do |f| %>
+      <%= render 'shared/error_messages', object: @employee %>
+          
+      <% if f.object.picture? %>
+        <%= image_tag @employee.picture.thumb.url %>
+      <% else %>
+        <span>
+          <%= gravatar_for (@employee) %>
+        </span>
+      <% end %>
+      <div>
+        <div>
+          <div><%= f.label :picture %>:</div>
+          <div>
+            <%= f.file_field :picture %>
+          </div>
+                  
+          <div>
+            <%= f.label :id %>:                      
+            <%= f.text_field :id, :value => ("RP_#{@employee.id}"), :disabled => true, class: "form-control" %>
+          </div>
+                  
+          <div><%= f.label :name %>:                      
+            <%= f.text_field :name, :disabled => true, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :gender %>:
+            <%= f.text_field :gender, :disabled => true, class: "form-control" %>
+          </div>                    
+                  
+          <div>
+            <%= f.label :designation %>:
+            <%= f.text_field :designation, :disabled => true, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :phone %><sup>*</sup>:
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :email %>:
+            <%= f.email_field :email, :disabled => true, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :personal_email %><sup>*</sup>:
+            <%= f.email_field :personal_email, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :date_of_join %>:
+            <%= f.date_field :date_of_join, :disabled => true, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :date_of_birth %>:
+            <%= f.date_field :date_of_birth, :disabled => true, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :address %><sup>*</sup>:
+            <%= f.text_area :address, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= f.label :active %>:
+            <%= f.check_box :active, :disabled => true %>
+          </div>
+
+          <div>
+            <%= f.label :username %>:
+            <%= f.text_field :username, :disabled => true, class: "form-control" %>
+          </div>
+
+        </div>
+        <br />
+        <div>
+          <%= f.submit "Update", class: "btn btn-lg btn-success col-sm-12 col-xs-12" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>  

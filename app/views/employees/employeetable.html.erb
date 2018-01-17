@@ -2,41 +2,43 @@
 <% provide(:title, "Employees") %>
 
 <div class="container">
-    <table class="table table-dark table-striped table-bordered table-hover">
+  <table class="table table-dark table-striped table-bordered table-hover">
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Active</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+    <% @employee.each do |employee| %>
+      <% unless employee.admin %>
+
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Active</th>
-            <th>Edit</th>
-            <th>Delete</th>
+          <td>
+              <%= link_to employee.name, admin_employeedetails_path(:id => employee.id) %>
+          </td>
+          <td>
+              <%= employee.email%>
+          </td>
+          <td>
+              <%= employee.phone%>
+          </td>
+          <td>
+              <%= employee.active == true ? "Yes" : "No" %>
+          </td>
+          <td>
+              <%= link_to "Edit", admin_edit_path(:id => employee.id) %>
+          </td>
+          <td>
+            <%= link_to "Delete", admin_delete_path(:id => employee.id), method: :delete, 
+                                              data: { confirm: "Do you want to delete?" } %>
+          </td>
         </tr>
-        <% @employee.each do |employee| %>
-            <% unless employee.admin %>
-                <tr>
-                    <td>
-                        <%= link_to employee.name, admin_employeedetails_path(:id => employee.id) %>
-                    </td>
-                    <td>
-                        <%= employee.email%>
-                    </td>
-                    <td>
-                        <%= employee.phone%>
-                    </td>
-                    <td>
-                        <%= employee.active == true ? "Yes" : "No" %>
-                    </td>
-                    <td>
-                        <%= link_to "Edit", admin_edit_path(:id => employee.id) %>
-                    </td>
-                    <td>
-                        <%= link_to "Delete", admin_delete_path(:id => employee.id), method: :delete, 
-                                                        data: { confirm: "Do you want to delete?" } %>
-                    </td>
-                </tr>
-            <% end %>
-        <% end %>
-    </table>
-    <%= link_to "Add Employee", admin_addemployee_path , class: "btn btn-primary btn-sm " %>
+        
+      <% end %>
+    <% end %>
+  </table>
+  <%= link_to "Add Employee", admin_addemployee_path , class: "btn btn-primary btn-sm " %>
 </div>
 <div class = "container text-right"><%= will_paginate @employee %></div>

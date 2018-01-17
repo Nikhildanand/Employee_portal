@@ -2,11 +2,11 @@
 <% provide(:title, "Admin Dashboard") %>
 
 <div class="container">
-    <h3 class="text-center"> Welcome
-        <%= current_employee.name %>
-    </h3>
-    <div class="text-center">
-        <%= link_to '<button type="button" class = "btn btn-primary">Employee</button>'.html_safe, admin_employee_path %>
-        <%= link_to '<button type="button" class = "btn btn-primary">Projects</button>'.html_safe, admin_projects_path %>
-    </div>
+  <h3 class="text-center"> Welcome
+    <%= current_employee.name %>
+  </h3>
+  <div class="text-center">
+    <%= link_to '<button type="button" class = "btn btn-primary">Employee</button>'.html_safe, admin_employee_path %>
+    <%= link_to '<button type="button" class = "btn btn-primary">Projects</button>'.html_safe, admin_projects_path %>
+  </div>
 </div>

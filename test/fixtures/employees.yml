@@ -4,7 +4,7 @@ employee:
   name: Nikhil D Anand
   gender: Male
   designation: MyString
-  phone: 8592817590
+  phone: "8592817590"
   email: nikhildanand@gmail.com
   date_of_join: 2018-01-03
   address: Sajith Nivas, Karumalloor P.O Thattampady, Aluva, Ernakulam
@@ -19,7 +19,7 @@ employee1:
   name: Nikhil
   gender: Male
   designation: MyString
-  phone: 8592817580
+  phone: "8592817580"
   email: nikhildanand1@gmail.com
   date_of_join: 2018-01-04
   address: Sajith Nivas, Karumalloor P.O Thattampady, Aluva, Ernakulam
@@ -34,7 +34,7 @@ admin:
   name: Hari Shankar
   gender: Male
   designation: MyString
-  phone: 8592817589
+  phone: "8592817589"
   email: nikhildanand007@gmail.com
   date_of_join: 2018-01-03
   address: Sajith Nivas, Karumalloor P.O Thattampady, Aluva, Ernakulam

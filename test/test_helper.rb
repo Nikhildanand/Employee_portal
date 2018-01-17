@@ -2,7 +2,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "minitest/reporters"
 Minitest::Reporters.use!
-
+OmniAuth.config.test_mode = true
 
 class ActiveSupport::TestCase
   fixtures :all

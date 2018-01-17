@@ -2,9 +2,9 @@ require 'test_helper'
 
 class EmployeeTableTest < ActionDispatch::IntegrationTest
 
-def setup
-   @admin = employees(:admin)
-end
+  def setup
+    @admin = employees(:admin)
+  end
 
   test "index including pagination" do
     log_in_as(@admin)

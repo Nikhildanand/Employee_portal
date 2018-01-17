@@ -1,108 +1,83 @@
 <% provide(:name, "admin") %>
 <% provide(:title, "Update Employee Details") %>
 <div class="container">
-    <div class="col-md-5">
-        <div>
-            <h3 class="text-center">Employee Update</h3>
-        </div>
-
-        <%= form_for(@employee, url: admin_edit_path(:id => @employee.id), method: :patch) do |f| %>
-            <div class="c">
-                <div class="formgroup">
-
-                    <div>
-                        <%= f.label :id %>
-                            :</div>
-                    <div>
-                        <%= f.text_field :id, :value => ("RP_#{@employee.id}"), :disabled => true, class: "form-control" %>
-                            
-                    </div>
-
-                    <div>
-                        <%= f.label :name %>
-                            :</div>
-                    <div>
-                        <%= f.text_field :name, class: "form-control" %>
-                            
-                    </div>
-
-
-                    <div>
-                        <%= f.label :gender %>
-                            :</div>
-                    <div>
-                        <%= f.select :gender, ["Male","Female","Other"], class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :designation %>
-                            :</div>
-                    <div>
-                        <%= f.text_field :designation, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :phone %>
-                            <sup>*</sup>:</div>
-                    <div>
-                        <%= f.text_field :phone, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :email %>
-                            :</div>
-                    <div>
-                        <%= f.email_field :email, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :personal_email %>
-                            <sup>*</sup>:</div>
-                    <div>
-                        <%= f.email_field :personal_email, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :date_of_join %>
-                            :</div>
-                    <div>
-                        <%= f.date_field :date_of_join, min: "2010-01-01", max: Date.today + 30, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :date_of_birth %>
-                            :</div>
-                    <div>
-                        <%= f.date_field :date_of_birth, min: 100.years.ago, max: 18.years.ago, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :address %>
-                            <sup>*</sup>:</div>
-                    <div>
-                        <%= f.text_area :address, class: "form-control" %>
-                            
-                    </div>
-                    <div>
-                        <%= f.label :active %>
-                            :</div>
-                    <div>
-                        <%= f.check_box :active %>
-                    </div>
-                    <div>
-                        <%= f.label :username %>
-                            :</div>
-                    <div>
-                        <%= f.text_field :username, class: "form-control" %>
-                            
-                    </div>
-                </div>
-                <br />
-                <div>
-                    <%= f.submit "Update", class: "btn btn-lg btn-success col-sm-12 col-xs-12" %>
-                </div>
-            </div>
-            <% end %>
-
+  <div class="col-md-5">
+    <div>
+        <h3 class="text-center">Employee Update</h3>
     </div>
+
+    <%= form_for(@employee, url: admin_edit_path(:id => @employee.id), method: :patch) do |f| %>
+      <div class="c">
+        <div class="formgroup">
+
+          <div><%= f.label :id %>:</div>
+          <div>
+            <%= f.text_field :id, :value => ("RP_#{@employee.id}"), :disabled => true, class: "form-control" %>          
+          </div>
+
+          <div><%= f.label :name %>:</div>
+          <div>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div><%= f.label :gender %>:</div>
+          <div>
+            <%= f.select :gender, ["Male","Female","Other"], class: "form-control" %>          
+          </div>
+
+          <div><%= f.label :designation %>:</div>
+          <div>
+            <%= f.text_field :designation, class: "form-control" %>        
+          </div>
+
+          <div><%= f.label :phone %><sup>*</sup>:</div>
+          <div>
+            <%= f.text_field :phone, class: "form-control" %>        
+          </div>
+
+          <div><%= f.label :email %>:</div>
+          <div>
+            <%= f.email_field :email, class: "form-control" %>        
+          </div>
+
+          <div><%= f.label :personal_email %><sup>*</sup>:</div>
+          <div>
+            <%= f.email_field :personal_email, class: "form-control" %>        
+          </div>
+
+          <div><%= f.label :date_of_join %>:</div>
+          <div>
+            <%= f.date_field :date_of_join, min: "2010-01-01", max: Date.today + 30, class: "form-control" %>
+          </div>
+
+          <div><%= f.label :date_of_birth %>:</div>
+          <div>
+            <%= f.date_field :date_of_birth, min: 100.years.ago, max: 18.years.ago, class: "form-control" %>  
+          </div>
+
+          <div><%= f.label :address %><sup>*</sup>:</div>
+          <div>
+            <%= f.text_area :address, class: "form-control" %>        
+          </div>
+
+          <div><%= f.label :active %>:</div>
+          <div>
+            <%= f.check_box :active %>
+          </div>
+
+          <div><%= f.label :username %>:</div>
+          <div>
+            <%= f.text_field :username, class: "form-control" %>
+          </div>
+
+        </div>
+        <br />
+        
+        <div>
+          <%= f.submit "Update", class: "btn btn-lg btn-success col-sm-12 col-xs-12" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
 </div>

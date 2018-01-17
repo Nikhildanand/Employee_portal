@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -20,4 +21,9 @@
   }
 }
 
-
+.font-awesome{
+  font-size: 3rem;
+}
+.alert-notice{
+  background-color: rgba(34, 177, 187, 0.329);
+}

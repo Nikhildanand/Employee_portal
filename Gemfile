@@ -16,6 +16,10 @@ gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
 gem 'validates_timeliness', '~> 4.0'
 gem 'date_validator'
+gem 'omniauth-facebook' 
+gem "koala", "~> 1.10.0rc" 
+  
+
 
 
 group :development, :test do

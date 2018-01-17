@@ -2,61 +2,66 @@
 <% provide(:title, "Employee Details") %>
 
 <div class="container">
-    <% if @employee.picture.blank? %>
-        <%= gravatar_for @employee %>
-    <% else %>
-        <%= image_tag @employee.picture.thumb.url %>
-    <% end %>
-    <h3 class="text-center">
+  <% if @employee.picture.blank? %>
+    <%= gravatar_for @employee %>
+  <% else %>
+    <%= image_tag @employee.picture.thumb.url %>
+  <% end %>
+  <h3 class="text-center">
+    <%= @employee.name %>
+  </h3>
+  <table class="table table-striped table-hover table-bordered">
+    
+    <tr>
+      <td>
+        Employee ID
+      </td>
+      <td>
+        RP_
+        <%= @employee.id %>
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Employee Name
+      </td>
+      <td>
         <%= @employee.name %>
-    </h3>
-    <table class="table table-striped table-hover table-bordered">
-        <tr>
-            <td>
-                Employee ID
-            </td>
-            <td>
-                RP_
-                <%= @employee.id %>
-                    <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Employee Name
-            </td>
-            <td>
-                <%= @employee.name %>
-                    <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Employee Designation
-            </td>
-            <td>
-                <%= @employee.designation %>
-                    <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Phone
-            </td>
-            <td>
-                <%= @employee.phone %>
-                    <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Address
-            </td>
-            <td>
-                <%= @employee.address.split(', ').join("<br>").html_safe %>
-                    <br />
-            </td>
-        </tr>
-    </table>
-</div>
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Employee Designation
+      </td>
+      <td>
+        <%= @employee.designation %>
+        <br />
+      </td>
+    </tr>
+
+      <tr>
+        <td>
+          Phone
+        </td>
+        <td>
+          <%= @employee.phone %>
+          <br />
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          Address
+        </td>
+        <td>
+          <%= @employee.address.split(', ').join("<br>").html_safe %>
+        <br />
+        </td>
+      </tr>
+
+  </table>
 </div>

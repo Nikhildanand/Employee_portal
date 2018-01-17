@@ -25,5 +25,8 @@ Rails.application.routes.draw do
   get '/admin/employeedetails', to: 'employees#employeedetails'
   get '/admin/projects', to: 'employees#projects'
 
+  get 'auth/facebook', as: 'auth_provider'
+  get 'auth/facebook/callback', to: 'employees#edit', fb: true
+
   root 'employees#new'
 end

@@ -1,42 +1,34 @@
 <div class="container">
-    <div class="col-md-4">
+  <div class="col-md-4">
+    <div>
+
+      <h3 class="text-center">
+        <%= "Employee Login" if (yield(:name) == "employee_login") %>
+        <%= "Admin Login" if (yield(:name) == "admin_login") %>
+      </h3>
+      <%= form_for( :session ) do |f| %>
         <div>
-
-            <h3 class="text-center">
-                <%= "Employee Login" if (yield(:name) == "employee_login") %>
-                <%= "Admin Login" if (yield(:name) == "admin_login") %>
-            </h3>
-            <%= form_for( :session ) do |f| %>
-                <div>
-                    <div>
-                        <div>
-                            <%= f.label :username %>
-                                <sup>*</sup>:</div>
-                        <div>
-                            <%= f.text_field :username, class: "form-control"%>
-
-                        </div>
-
-
-                        <div>
-                            <%= f.label :password %>
-                                <sup>*</sup>:</div>
-                        <div>
-                            <%= f.password_field :password, class: "form-control" %>
-
-                        </div>
-                    </div>
-                    <br />
-                    <div class="text-right">
-                        <%= f.label :remember_me, class: "checkbox" do %>
-                            <%= f.check_box :remember_me %>
-                                <span>Remember me</span>
-                                <% end %>
-                    </div>
-                    <div>
-                        <%= f.submit "Log in", class: "btn btn-success col-md-12 col-sm-12 col-xs-12" %>
-                    </div>
-                </div>
+          <div>
+            <div><%= f.label :username %><sup>*</sup>:</div>
+            <div>
+              <%= f.text_field :username, class: "form-control"%>
+            </div>
+            <div><%= f.label :password %><sup>*</sup>:</div>
+            <div>
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
+          </div>
+          <br />
+          <div class="text-right">
+            <%= f.label :remember_me, class: "checkbox" do %>
+              <%= f.check_box :remember_me %>
+              <span>Remember me</span>
             <% end %>
+            </div>
+          <div>
+          <%= f.submit "Log in", class: "btn btn-success col-md-12 col-sm-12 col-xs-12" %>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>

@@ -18,13 +18,13 @@ class AdminUpdateEmployeeTest < ActionDispatch::IntegrationTest
     assert_template 'employees/adminedit'
   end
 
-    test "successful edit" do
+  test "successful edit" do
     log_in_as @admin
     get admin_edit_path(:id => @employee.id)
     assert_template 'employees/adminedit'
     name = "Vishak"
     password = "Password@123"
-    phone  = 9496088769
+    phone  = "9496088769"
     email = "nikhildanand@hotmail.com"
     designation = "Project Head"
     date_of_join = "2018-01-02"
