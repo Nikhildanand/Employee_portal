@@ -15,17 +15,23 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = current_employee
-    
     if params["fb"]
-      config = request.env['omniauth.auth']['credentials']
+      config = request.env['omniauth.auth'][:credentials]
       @graph = Koala::Facebook::API.new(config['token'])
-      user = @graph.get_object('me?fields=picture,name,email,birthday')
-      if user['email'] || user['birthday']
-        @employee.update_attributes(personal_email: user['email'], 
-                date_of_birth: date_converter(user['birthday']) )
-        redirect_to employeeportal_path, notice: "Data fetched from facebook successfully!"
+      @user = @graph.get_object('me?fields=picture,name,email,birthday')
+      if @user['email'] || @user['birthday']
+        if @user['birthday'].nil?
+          @user['birthday'] = @employee[:date_of_birth]
+        else
+          @user['birthday'] = date_converter(@user['birthday'])
+        end
+        if @user['email'].nil?
+          @user['email'] = @employee[:personal_email]
+        end
+        @employee.update_attributes(personal_email: @user['email'], date_of_birth: @user['birthday'])
+        redirect_to employeeportal_dashboard_path, notice: "Data fetched from facebook successfully!"
       else
-        redirect_to employeeportal_path, notice: "Oops! An error occured while data fetching from facebook"
+        redirect_to employeeportal_path, notice: "Oops! An error occured while fetching data from facebook"
       end
       else
         render 'edit'
@@ -112,6 +118,5 @@ class EmployeesController < ApplicationController
           :date_of_join, :date_of_birth, :address, :active, :username,
           :personal_email)
   end
-
 
 end
