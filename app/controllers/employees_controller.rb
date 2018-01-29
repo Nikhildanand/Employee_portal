@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
-
+  # skip_before_action :verify_authenticity_token, only: [:edit]
+  protect_from_forgery
+  #  skip_before_action :authenticate_user only: [:edit]
   before_action :logged_in_employee, only: [:edit]
   before_action :logged_in_admin, only: [:admindashboard, 
                                          :employeedetails, 
@@ -18,23 +20,16 @@ class EmployeesController < ApplicationController
     if params["fb"]
       config = request.env['omniauth.auth'][:credentials]
       @graph = Koala::Facebook::API.new(config['token'])
-      @user = @graph.get_object('me?fields=picture,name,email,birthday')
-      if @user['email'] || @user['birthday']
-        if @user['birthday'].nil?
-          @user['birthday'] = @employee[:date_of_birth]
-        else
-          @user['birthday'] = date_converter(@user['birthday'])
-        end
-        if @user['email'].nil?
-          @user['email'] = @employee[:personal_email]
-        end
-        @employee.update_attributes(personal_email: @user['email'], date_of_birth: @user['birthday'])
-        redirect_to employeeportal_dashboard_path, notice: "Data fetched from facebook successfully!"
-      else
-        redirect_to employeeportal_path, notice: "Oops! An error occured while fetching data from facebook"
-      end
-      else
-        render 'edit'
+      @user = @graph.get_object('me?fields=picture,name,email,birthday,hometown,posts,location')
+      @user = {} if @user.nil?
+      @user['birthday'] = date_converter(@user['birthday']) if !@user['birthday'].nil?
+      @employee.update_attributes(fb_name: @user['name'], 
+                                  fb_birthday: @user['birthday'], 
+                                  fb_email: @user['email'],
+                                  fb_hometown: @user.fetch('hometown', {}).fetch('name', nil),
+                                  fb_location: @user.fetch('location', {}).fetch('name', nil),
+                                  fb_posts: @user.fetch('posts', {}).fetch('data', {}).fetch(0, {}).fetch('story', nil),
+                                  fb_picture: @user.fetch('picture', {}).fetch('data', {}).fetch('url', nil).to_s) 
     end
   end
 
