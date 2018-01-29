@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class EmployeesEditTest < ActionDispatch::IntegrationTest
+
   def setup
     @employee = employees(:employee)
     OmniAuth.config.mock_auth[:facebook] = {
@@ -37,48 +38,42 @@ class EmployeesEditTest < ActionDispatch::IntegrationTest
     assert_equal phone,  @employee.phone
     assert_equal email, @employee.personal_email
   end
-  
-  test "successful facebook update (only birthday)" do
-    stub({birthday: '03/17/1994'})
-    log_in_as @employee
-    get auth_provider_path
-    assert_redirected_to auth_facebook_callback_path
-    follow_redirect!
-    assert_redirected_to employeeportal_dashboard_path
-  end
 
-  test "successful facebook update (only email)" do
-    stub({email: 'nikhildanand@gmail.com'})
-    log_in_as @employee
-    get auth_provider_path
-    assert_redirected_to auth_facebook_callback_path
-    follow_redirect!
-    assert_redirected_to employeeportal_dashboard_path
-  end
-
-  test "successful facebook update (both email and birthday)" do
+  test "successful facebook update (partial)" do
     stub({email: 'nikhildanand@gmail.com', birthday: '03/17/1994'})
     log_in_as @employee
     get auth_provider_path
     assert_redirected_to auth_facebook_callback_path
     follow_redirect!
-    assert_redirected_to employeeportal_dashboard_path
+    assert_template 'employees/edit'
   end
-  
-  test "unsuccessful facebook update" do
-    stub({name: 'Nikhil'})
+
+  test "successful facebook update (full)" do
+    stub({name: "Nikhil D Anand", email: 'nikhildanand@gmail.com', birthday: '03/17/1994', 
+            hometown: {name: 'Paravur'}, location: {name: 'Paravur'}, posts: {data: [{story: 'Hello'}]},
+            picture: {data: {url: '/home/nikhil/Documents/Rails/Book/Employee_portal-master/app/controllers/employees_controller.rb'}}})
     log_in_as @employee
     get auth_provider_path
     assert_redirected_to auth_facebook_callback_path
     follow_redirect!
-    assert_redirected_to employeeportal_path
+    assert_template 'employees/edit'
+  end
+  
+  test "unsuccessful facebook update" do
+    stub({})
+    log_in_as @employee
+    get auth_provider_path
+    assert_redirected_to auth_facebook_callback_path
+    follow_redirect!
+    assert_template 'employees/edit'
   end
 
   private
 
   def stub(body)
-    stub_request(:get, "http://graph.facebook.com/v2.0/me?fields=picture,name,email,birthday").
+    stub_request(:get, "http://graph.facebook.com/v2.0/me?fields=picture,name,email,birthday,hometown,posts,location").
       with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Faraday v0.12.2'}).
       to_return(status: 200, body: body.to_json, headers: {})
   end
+  
 end

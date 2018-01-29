@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108020614) do
+ActiveRecord::Schema.define(version: 20180125070450) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20180108020614) do
     t.string "password_digest"
     t.string "remember_digest"
     t.string "picture"
+    t.string "fb_name"
+    t.date "fb_birthday"
+    t.string "fb_email"
+    t.string "fb_posts"
+    t.string "fb_location"
+    t.string "fb"
+    t.string "fb_hometown"
+    t.string "fb_picture"
   end
 
 end

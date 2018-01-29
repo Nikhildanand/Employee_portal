@@ -89,9 +89,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get employeeportal_path
     assert_template 'employees/edit'
     employeeheader
-    assert_select "a[href=?]", auth_provider_path
-    get auth_provider_path
-    assert_redirected_to auth_facebook_callback_path
+    # assert_select "a[href=?]", auth_provider_path
+    # get auth_provider_path
+    # assert_redirected_to auth_facebook_callback_path
   end
 
 end
